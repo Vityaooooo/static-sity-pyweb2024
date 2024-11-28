@@ -1,0 +1,4 @@
+baseURL = 'https://vityaooooo.github.io/static-sity-pyweb2024/'
+languageCode = 'ru-ru'
+title = 'Проектирование и развертывание веб-решений в эко-системе Python'
+theme = 'ananke'
