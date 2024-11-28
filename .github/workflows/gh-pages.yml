@@ -4,10 +4,11 @@ on:
   push:
     branches:
       - main
+    pull_request:
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
 
     steps:
     - name: Checkout code
@@ -17,12 +18,14 @@ jobs:
       uses: peaceiris/actions-hugo@v2
       with:
         hugo-version: "latest"
+        extended: true
 
     - name: Build the site
-      run: hugo
+      run: hugo --minify
 
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
+      if: github.ref == 'refs/heads/main'
       with:
         github_token: ${{ secrets.HUGO_DEPLOY }}
         publish_dir: ./public
